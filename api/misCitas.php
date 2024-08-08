@@ -1,5 +1,5 @@
 <?php
-    require_once('../classCita/cita.class.php');
+    require_once('../clases/cita.class.php');
 
     if($_SERVER['REQUEST_METHOD'] == 'GET' 
         && isset($_GET['cliente_cedula']) ){

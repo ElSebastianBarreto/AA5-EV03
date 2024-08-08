@@ -39,16 +39,16 @@
         }
 
         //funcion de login
-public static function login($usuario,$clave){    
+public static function login($cedula,$clave){    
     $database = new Connection();
     $conn = $database->getConnection();
-    $stmt = $conn->prepare('SELECT * FROM usuarios WHERE usuario=:usuario AND clave=:clave');
-    $stmt->bindParam(':usuario', $usuario);
+    $stmt = $conn->prepare('SELECT * FROM cliente WHERE cedula=:cedula AND clave=:clave');
+    $stmt->bindParam(':cedula', $cedula);
     $stmt->bindParam(':clave', $clave);
     //mostrar si es correcto o no el login
     if ($stmt->execute() && $stmt->rowCount() > 0) {
         $result = $stmt->fetch();
-        echo json_encode(["message" => "Login correcto", "usuario" => $result['usuario']]);
+        echo json_encode(["message" => "Login correcto", "cedula" => $result['cedula']]);
         header('HTTP/1.1 200 OK');
     } else {
         echo json_encode(["message" => "la clave o usuario son incorrectos"]);
