@@ -5,7 +5,7 @@
             public static function CitasxDia($barbero_cedula,$fecha) {
         $database = new Connection();
         $conn = $database->getConnection();
-        //query para obtener la informacion del usuario
+        //query para obtener la informacion necesaria para un babrbero en una fecha especifica
         $stmt = $conn->prepare('SELECT c.fecha, c.horainicio, c.horafin, 
         c.estado, m.nombremetodo, s.titulo, cl.nombre,cl.apellido,cl.telefono FROM cita c
         inner join cliente cl
@@ -17,7 +17,7 @@
         WHERE barbero_cedula=:barbero_cedula AND fecha=:fecha');
         $stmt->bindParam(':barbero_cedula', $barbero_cedula);
         $stmt->bindParam(':fecha', $fecha);
-        //mostrar si es correcto o no se encuentra el usuario
+        //mostrar si se realizo correctamente 
         if ($stmt->execute()) {
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($result);

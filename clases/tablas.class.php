@@ -5,13 +5,13 @@
         public static function ListarTodo() {
             $database = new Connection();
             $conn = $database->getConnection();
-            //query para obtener la informacion del usuario
+            //querys para obtener la infomracion de las tablas 
             $stmt = $conn->prepare('SELECT * FROM metododepago');
             $barbero = $conn->prepare('SELECT * FROM barbero');
             $servicio = $conn->prepare('SELECT * FROM servicio');
             $categoriaServicio = $conn->prepare('SELECT * FROM categoriaservicio');
             $cliente = $conn->prepare('SELECT * FROM cliente');
-        
+        //verificar si se realizo correctamente el stmt
             if ($stmt->execute()) {
                 echo "metodos de pago";
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
