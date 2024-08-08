@@ -1,7 +1,7 @@
 <?php
     require_once('../connection/connection.php');
 
-    class Client{
+    class Cita{
         //funcion de crear usuarios
         public static function crearUsuario($usuario, $nombre,$clave){
             $connection = new Connection();
@@ -22,12 +22,12 @@
         }
 
 //funcion de obtener la informacion de un usuario
-        public static function infoUsuario($usuario) {
+        public static function misCitas($cliente_cedula) {
             $database = new Connection();
             $conn = $database->getConnection();
             //query para obtener la informacion del usuario
-            $stmt = $conn->prepare('SELECT * FROM usuarios WHERE usuario=:usuario');
-            $stmt->bindParam(':usuario', $usuario);
+            $stmt = $conn->prepare('SELECT * FROM cita WHERE cliente_cedula=:cliente_cedula');
+            $stmt->bindParam(':cliente_cedula', $cliente_cedula);
             //mostrar si es correcto o no se encuentra el usuario
             if ($stmt->execute()) {
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
